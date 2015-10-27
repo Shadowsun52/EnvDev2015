@@ -6,9 +6,35 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
+    DataContext="{Binding Main, Source={StaticResource Locator}}"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
 
+        <StackPanel Grid.Row="0">
+            <TextBlock x:Uid="appName" TextWrapping="Wrap" HorizontalAlignment="Center" Text="" FontSize="48"/>
+        </StackPanel>
+
+        <Grid Grid.Row="1">
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <StackPanel>
+                    <Image HorizontalAlignment="Center" Height="300" Width="300" Source="ms-appx:/images/ice-cubes.jpg"/>
+                    
+                    <TextBlock x:Uid="tLogin" HorizontalAlignment="Center" TextWrapping="Wrap" FontSize="24"/>
+                    <TextBox x:Uid="tbLogin" x:Name="bLogin" HorizontalAlignment="Center" Width="250px" TextWrapping="Wrap" Text="{Binding Login, Mode=TwoWay}"/>
+                    
+                    <TextBlock x:Uid="tPassword" HorizontalAlignment="Center" TextWrapping="Wrap" FontSize="24"/>
+                    <TextBox x:Uid="tbPassword" x:Name="bPassword" HorizontalAlignment="Center" Width="250px" TextWrapping="Wrap" Text="{Binding Password, Mode=TwoWay}"/>
+                    
+                    <Button x:Uid="bLogin" HorizontalAlignment="Center" />
+                    <Button x:Uid="bSignUp" HorizontalAlignment="Center"/>
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
+        
     </Grid>
 </Page>
