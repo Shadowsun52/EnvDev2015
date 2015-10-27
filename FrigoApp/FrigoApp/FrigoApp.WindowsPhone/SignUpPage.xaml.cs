@@ -21,9 +21,9 @@ namespace FrigoApp
     /// <summary>
     /// Une page vide peut être utilisée seule ou constituer une page de destination au sein d'un frame.
     /// </summary>
-    public sealed partial class HomePage : Page
+    public sealed partial class SignUpPage : Page
     {
-        public HomePage()
+        public SignUpPage()
         {
             this.InitializeComponent();
         }

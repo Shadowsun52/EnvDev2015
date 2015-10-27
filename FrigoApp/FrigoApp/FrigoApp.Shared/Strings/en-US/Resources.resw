@@ -123,6 +123,9 @@
   <data name="bAddContainer.Content" xml:space="preserve">
     <value>Add container</value>
   </data>
+  <data name="badFormatEmail" xml:space="preserve">
+    <value>Bad Format for Email</value>
+  </data>
   <data name="bLogin.Content" xml:space="preserve">
     <value>Log in</value>
   </data>
@@ -132,11 +135,29 @@
   <data name="cbNewContainerFreezer.Content" xml:space="preserve">
     <value>Freezer ?</value>
   </data>
+  <data name="errorEmptyField" xml:space="preserve">
+    <value>All field need filled</value>
+  </data>
   <data name="errorLogin" xml:space="preserve">
     <value>Login unknown</value>
   </data>
+  <data name="errorLoginExist" xml:space="preserve">
+    <value>Login exist already</value>
+  </data>
   <data name="errorPassword" xml:space="preserve">
     <value>Password incorrect</value>
+  </data>
+  <data name="notSameConfirmPassword" xml:space="preserve">
+    <value>Password is not same</value>
+  </data>
+  <data name="signUpSuccess" xml:space="preserve">
+    <value>Sign up Successfull</value>
+  </data>
+  <data name="tConfirmPassword.Text" xml:space="preserve">
+    <value>Confirm password</value>
+  </data>
+  <data name="tEmail.Text" xml:space="preserve">
+    <value>Email</value>
   </data>
   <data name="tLogin.Text" xml:space="preserve">
     <value>Login</value>

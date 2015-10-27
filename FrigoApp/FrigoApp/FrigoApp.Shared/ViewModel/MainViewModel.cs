@@ -89,6 +89,18 @@ namespace FrigoApp.ViewModel
             }
         }
 
+        public ICommand GoToSignUp
+        {
+            get
+            {
+                return new RelayCommand(
+                    () =>
+                    {
+                        _navigationService.NavigateTo("SignUpPage");
+                    });
+            }
+        }
+
         private async void ShowMessageBox(string message)
         {
             var dialog = new MessageDialog(message.ToString());

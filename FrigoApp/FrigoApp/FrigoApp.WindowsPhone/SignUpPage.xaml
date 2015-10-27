@@ -1,12 +1,12 @@
 ﻿<Page
-    x:Class="FrigoApp.MainPage"
+    x:Class="FrigoApp.SignUpPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:FrigoApp"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    DataContext="{Binding Main, Source={StaticResource Locator}}"
+    DataContext="{Binding SignUp, Source={StaticResource Locator}}"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
@@ -18,23 +18,25 @@
         <StackPanel Grid.Row="0">
             <TextBlock x:Uid="appName" TextWrapping="Wrap" HorizontalAlignment="Center" Text="" FontSize="48"/>
         </StackPanel>
-
         <Grid Grid.Row="1">
             <ScrollViewer VerticalScrollBarVisibility="Auto">
                 <StackPanel>
-                    <Image HorizontalAlignment="Center" Height="300" Width="300" Source="ms-appx:/images/ice-cubes.jpg"/>
                     
                     <TextBlock x:Uid="tLogin" HorizontalAlignment="Center" TextWrapping="Wrap" FontSize="24"/>
                     <TextBox x:Uid="tbLogin" x:Name="tbLogin" HorizontalAlignment="Center" Width="250px" TextWrapping="Wrap" Text="{Binding Login, Mode=TwoWay}"/>
-                    
+
                     <TextBlock x:Uid="tPassword" HorizontalAlignment="Center" TextWrapping="Wrap" FontSize="24"/>
                     <TextBox x:Uid="tbPassword" x:Name="tbPassword" HorizontalAlignment="Center" Width="250px" TextWrapping="Wrap" Text="{Binding Password, Mode=TwoWay}"/>
 
-                    <Button x:Uid="bLogin" HorizontalAlignment="Center" Command="{Binding GoToHomePage}" />
-                    <Button x:Uid="bSignUp" HorizontalAlignment="Center" Command="{Binding GoToSignUp}"/>
+                    <TextBlock x:Uid="tConfirmPassword" HorizontalAlignment="Center" TextWrapping="Wrap" FontSize="24"/>
+                    <TextBox x:Uid="tbConfirmPassword" x:Name="tbConfirmPassword" HorizontalAlignment="Center" Width="250px" TextWrapping="Wrap" Text="{Binding ConfirmPassword, Mode=TwoWay}"/>
+
+                    <TextBlock x:Uid="tEmail" HorizontalAlignment="Center" TextWrapping="Wrap" FontSize="24"/>
+                    <TextBox x:Uid="tbEmail" x:Name="tbEmail" HorizontalAlignment="Center" Width="250px" TextWrapping="Wrap" Text="{Binding Email, Mode=TwoWay}"/>
+                    
+                    <Button x:Uid="bSignUp" HorizontalAlignment="Center" Command="{Binding SignUpUser}" />
                 </StackPanel>
             </ScrollViewer>
         </Grid>
-        
     </Grid>
 </Page>

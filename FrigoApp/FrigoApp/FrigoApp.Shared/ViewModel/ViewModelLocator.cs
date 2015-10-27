@@ -36,10 +36,12 @@ namespace FrigoApp.ViewModel
 
             navigation.Configure("MainPage", typeof(MainPage));
             navigation.Configure("HomePage", typeof(HomePage));
+            navigation.Configure("SignUpPage", typeof(SignUpPage));
 
             SimpleIoc.Default.Register<INavigationService>(() => navigation);
             SimpleIoc.Default.Register<MainViewModel>();
             SimpleIoc.Default.Register<HomeViewModel>();
+            SimpleIoc.Default.Register<SignUpViewModel>();
         }
 
         public MainViewModel Main
@@ -57,7 +59,15 @@ namespace FrigoApp.ViewModel
                 return ServiceLocator.Current.GetInstance<HomeViewModel>();
             }
         }
-        
+
+        public SignUpViewModel SignUp
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<SignUpViewModel>();
+            }
+        }
+
         public static void Cleanup()
         {
             // TODO Clear the ViewModels
