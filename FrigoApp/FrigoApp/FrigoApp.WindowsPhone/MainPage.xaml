@@ -25,13 +25,13 @@
                     <Image HorizontalAlignment="Center" Height="300" Width="300" Source="ms-appx:/images/ice-cubes.jpg"/>
                     
                     <TextBlock x:Uid="tLogin" HorizontalAlignment="Center" TextWrapping="Wrap" FontSize="24"/>
-                    <TextBox x:Uid="tbLogin" x:Name="bLogin" HorizontalAlignment="Center" Width="250px" TextWrapping="Wrap" Text="{Binding Login, Mode=TwoWay}"/>
+                    <TextBox x:Uid="tbLogin" x:Name="tbLogin" HorizontalAlignment="Center" Width="250px" TextWrapping="Wrap" Text="{Binding Login, Mode=TwoWay}"/>
                     
                     <TextBlock x:Uid="tPassword" HorizontalAlignment="Center" TextWrapping="Wrap" FontSize="24"/>
-                    <TextBox x:Uid="tbPassword" x:Name="bPassword" HorizontalAlignment="Center" Width="250px" TextWrapping="Wrap" Text="{Binding Password, Mode=TwoWay}"/>
-                    
-                    <Button x:Uid="bLogin" HorizontalAlignment="Center" />
-                    <Button x:Uid="bSignUp" HorizontalAlignment="Center"/>
+                    <TextBox x:Uid="tbPassword" x:Name="tbPassword" HorizontalAlignment="Center" Width="250px" TextWrapping="Wrap" Text="{Binding Password, Mode=TwoWay}"/>
+
+                    <Button x:Uid="bLogin" HorizontalAlignment="Center" Command="{Binding GoToHomePage}" />
+                    <Button x:Uid="bSignUp" HorizontalAlignment="Center" />
                 </StackPanel>
             </ScrollViewer>
         </Grid>

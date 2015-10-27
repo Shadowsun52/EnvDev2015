@@ -14,6 +14,7 @@
 
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
+using GalaSoft.MvvmLight.Views;
 using Microsoft.Practices.ServiceLocation;
 
 namespace FrigoApp.ViewModel
@@ -31,18 +32,14 @@ namespace FrigoApp.ViewModel
         {
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
 
-            ////if (ViewModelBase.IsInDesignModeStatic)
-            ////{
-            ////    // Create design time view services and models
-            ////    SimpleIoc.Default.Register<IDataService, DesignDataService>();
-            ////}
-            ////else
-            ////{
-            ////    // Create run time view services and models
-            ////    SimpleIoc.Default.Register<IDataService, DataService>();
-            ////}
+            NavigationService navigation = new NavigationService();
 
+            navigation.Configure("MainPage", typeof(MainPage));
+            navigation.Configure("HomePage", typeof(HomePage));
+
+            SimpleIoc.Default.Register<INavigationService>(() => navigation);
             SimpleIoc.Default.Register<MainViewModel>();
+            SimpleIoc.Default.Register<HomeViewModel>();
         }
 
         public MainViewModel Main
@@ -50,6 +47,14 @@ namespace FrigoApp.ViewModel
             get
             {
                 return ServiceLocator.Current.GetInstance<MainViewModel>();
+            }
+        }
+
+        public HomeViewModel Home
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<HomeViewModel>();
             }
         }
         

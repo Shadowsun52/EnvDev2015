@@ -1,4 +1,9 @@
 using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Views;
+using System;
+using System.Windows.Input;
+using Windows.UI.Popups;
 
 namespace FrigoApp.ViewModel
 {
@@ -19,16 +24,75 @@ namespace FrigoApp.ViewModel
         /// <summary>
         /// Initializes a new instance of the MainViewModel class.
         /// </summary>
-        public MainViewModel()
+        private INavigationService _navigationService;
+
+        private String login;
+
+        public String Login
         {
-            ////if (IsInDesignMode)
-            ////{
-            ////    // Code runs in Blend --> create design time data.
-            ////}
-            ////else
-            ////{
-            ////    // Code runs "for real"
-            ////}
+            get { return login;  }
+            set
+            {
+                login = value;
+                RaisePropertyChanged("login");
+            }
+        }
+
+        private String password;
+
+        public String Password
+        {
+            get { return password; }
+            set
+            {
+                password = value;
+                RaisePropertyChanged("password");
+            }
+        }
+
+        public MainViewModel(INavigationService navigationService = null)
+        {
+            _navigationService = navigationService;
+
+        }
+
+        public ICommand GoToHomePage
+        {
+            get
+            {
+                return new RelayCommand(
+                    () =>
+                    {
+                        if(login == "test")
+                        {
+                            if(password == "test")
+                            {
+                                var loader = new Windows.ApplicationModel.Resources.ResourceLoader();
+                                var str = loader.GetString("validConnexion");
+                                ShowMessageBox(str);
+                                _navigationService.NavigateTo("HomePage");
+                            }
+                            else
+                            {
+                                var loader = new Windows.ApplicationModel.Resources.ResourceLoader();
+                                var str = loader.GetString("errorPassword");
+                                ShowMessageBox(str);
+                            }                            
+                        }
+                        else
+                        {
+                            var loader = new Windows.ApplicationModel.Resources.ResourceLoader();
+                            var str = loader.GetString("errorLogin");
+                            ShowMessageBox(str);
+                        }
+                    });
+            }
+        }
+
+        private async void ShowMessageBox(string message)
+        {
+            var dialog = new MessageDialog(message.ToString());
+            await dialog.ShowAsync();
         }
     }
 }
