@@ -19,6 +19,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Model\Container.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Item.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\User.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModel\UpdateViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\ContainerViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\HomeViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\MainViewModel.cs" />

@@ -198,4 +198,16 @@
   <data name="tNewItemQuantity.Text" xml:space="preserve">
     <value>Quantité</value>
   </data>
+  <data name="bUpdateItem" xml:space="preserve">
+    <value>Mise à jour</value>
+  </data>
+  <data name="selectedItem" xml:space="preserve">
+    <value>Item sélectionné</value>
+  </data>
+  <data name="tSelectedItemExpirationDate" xml:space="preserve">
+    <value>Date d'expiration</value>
+  </data>
+  <data name="tSelectedItemQuantity" xml:space="preserve">
+    <value>Quantité</value>
+  </data>
 </root>
