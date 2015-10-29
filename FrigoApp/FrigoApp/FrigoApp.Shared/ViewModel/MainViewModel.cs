@@ -1,7 +1,10 @@
+using FrigoApp.Model;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
+using Microsoft.WindowsAzure.MobileServices;
 using System;
+using System.Collections.ObjectModel;
 using System.Windows.Input;
 using Windows.UI.Popups;
 
@@ -25,6 +28,10 @@ namespace FrigoApp.ViewModel
         /// Initializes a new instance of the MainViewModel class.
         /// </summary>
         private INavigationService _navigationService;
+        
+        //public ObservableCollection<User> userFound { get; private set; }
+
+        private IMobileServiceTable<User> userTable = App.FappClient.GetTable<User>();
 
         private String login;
 
@@ -54,6 +61,8 @@ namespace FrigoApp.ViewModel
         {
             _navigationService = navigationService;
 
+            //userFound = new ObservableCollection<User>();
+
         }
 
         public ICommand GoToHomePage
@@ -61,11 +70,19 @@ namespace FrigoApp.ViewModel
             get
             {
                 return new RelayCommand(
-                    () =>
+                    async () =>
                     {
-                        if(login == "test")
+                        IMobileServiceTableQuery<User> query = userTable.Where(user => user.Login == login);
+
+                        //userFound.Clear();
+
+                        var userFound = await query.ToListAsync();
+                        //foreach (var item in items)
+                        //    userFound.Add(item);
+
+                        if(userFound.Count != 0)
                         {
-                            if(password == "test")
+                            if(userFound[0].Password == password)
                             {
                                 var loader = new Windows.ApplicationModel.Resources.ResourceLoader();
                                 var str = loader.GetString("validConnexion");

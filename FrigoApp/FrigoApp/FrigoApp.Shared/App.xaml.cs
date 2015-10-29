@@ -25,6 +25,7 @@ namespace FrigoApp
     /// </summary>
     public sealed partial class App : Application
     {
+
 #if WINDOWS_PHONE_APP
         private TransitionCollection transitions;
 #endif
@@ -133,5 +134,11 @@ namespace FrigoApp
             // TODO: enregistrez l'état de l'application et arrêtez toute activité en arrière-plan
             deferral.Complete();
         }
+
+        public static Microsoft.WindowsAzure.MobileServices.MobileServiceClient FappClient = new Microsoft.WindowsAzure.MobileServices.MobileServiceClient(
+        "https://fapp.azure-mobile.net/",
+        "zHLAVfeEtqDVDFGsIjdWVCAwSTJqnc88");
     }
+
+    
 }

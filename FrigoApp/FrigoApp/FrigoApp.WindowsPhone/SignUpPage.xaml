@@ -26,10 +26,10 @@
                     <TextBox x:Uid="tbLogin" x:Name="tbLogin" HorizontalAlignment="Center" Width="250px" TextWrapping="Wrap" Text="{Binding Login, Mode=TwoWay}"/>
 
                     <TextBlock x:Uid="tPassword" HorizontalAlignment="Center" TextWrapping="Wrap" FontSize="24"/>
-                    <TextBox x:Uid="tbPassword" x:Name="tbPassword" HorizontalAlignment="Center" Width="250px" TextWrapping="Wrap" Text="{Binding Password, Mode=TwoWay}"/>
+                    <PasswordBox x:Uid="tbPassword" x:Name="tbPassword" HorizontalAlignment="Center" Width="250px" Password="{Binding Password, Mode=TwoWay}"/>
 
                     <TextBlock x:Uid="tConfirmPassword" HorizontalAlignment="Center" TextWrapping="Wrap" FontSize="24"/>
-                    <TextBox x:Uid="tbConfirmPassword" x:Name="tbConfirmPassword" HorizontalAlignment="Center" Width="250px" TextWrapping="Wrap" Text="{Binding ConfirmPassword, Mode=TwoWay}"/>
+                    <PasswordBox x:Uid="tbConfirmPassword" x:Name="tbConfirmPassword" HorizontalAlignment="Center" Width="250px" Password="{Binding ConfirmPassword, Mode=TwoWay}"/>
 
                     <TextBlock x:Uid="tEmail" HorizontalAlignment="Center" TextWrapping="Wrap" FontSize="24"/>
                     <TextBox x:Uid="tbEmail" x:Name="tbEmail" HorizontalAlignment="Center" Width="250px" TextWrapping="Wrap" Text="{Binding Email, Mode=TwoWay}"/>

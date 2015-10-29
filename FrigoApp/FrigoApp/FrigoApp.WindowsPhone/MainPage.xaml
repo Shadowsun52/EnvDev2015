@@ -28,7 +28,7 @@
                     <TextBox x:Uid="tbLogin" x:Name="tbLogin" HorizontalAlignment="Center" Width="250px" TextWrapping="Wrap" Text="{Binding Login, Mode=TwoWay}"/>
                     
                     <TextBlock x:Uid="tPassword" HorizontalAlignment="Center" TextWrapping="Wrap" FontSize="24"/>
-                    <TextBox x:Uid="tbPassword" x:Name="tbPassword" HorizontalAlignment="Center" Width="250px" TextWrapping="Wrap" Text="{Binding Password, Mode=TwoWay}"/>
+                    <PasswordBox x:Uid="tbPassword" x:Name="tbPassword" HorizontalAlignment="Center" Width="250px" Password="{Binding Password, Mode=TwoWay}"/>
 
                     <Button x:Uid="bLogin" HorizontalAlignment="Center" Command="{Binding GoToHomePage}" />
                     <Button x:Uid="bSignUp" HorizontalAlignment="Center" Command="{Binding GoToSignUp}"/>

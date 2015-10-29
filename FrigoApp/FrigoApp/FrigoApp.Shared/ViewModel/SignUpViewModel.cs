@@ -4,15 +4,22 @@ using GalaSoft.MvvmLight.Views;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Collections.ObjectModel;
 using System.Text.RegularExpressions;
 using System.Windows.Input;
 using Windows.UI.Popups;
+using FrigoApp.Model;
+using Microsoft.WindowsAzure.MobileServices;
 
 namespace FrigoApp.ViewModel
 {
     public class SignUpViewModel : ViewModelBase
     {
         private INavigationService _navigationService;
+
+        public ObservableCollection<User> userAlreadySignUp { get; private set;  }
+
+        private IMobileServiceTable<User> userTable = App.FappClient.GetTable<User>();
 
         private String login;
 
@@ -71,7 +78,7 @@ namespace FrigoApp.ViewModel
             get
             {
                 return new RelayCommand(
-                    () =>
+                    async () =>
                     {
                         if(checkAllFieldIsFull())
                         {
@@ -81,6 +88,8 @@ namespace FrigoApp.ViewModel
                                 {
                                     if (checkFormatEmail())
                                     {
+                                        User newUser = new User(login, password, email);
+                                        await userTable.InsertAsync(newUser);
                                         var loader = new Windows.ApplicationModel.Resources.ResourceLoader();
                                         var str = loader.GetString("signUpSuccess");
                                         ShowMessageBox(str);
