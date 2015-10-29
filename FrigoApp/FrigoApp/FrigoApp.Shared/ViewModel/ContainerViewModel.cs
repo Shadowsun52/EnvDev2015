@@ -56,9 +56,83 @@ namespace FrigoApp.ViewModel
             }
         }
 
+        public ObservableCollection<Container> items { get; private set; }
+
+        private IMobileServiceTable<Item> itemTable = App.FappClient.GetTable<Item>();
+
+        private String newItemName;
+
+        public String NewItemName
+        {
+            get { return newItemName; }
+            set
+            {
+                newItemName = value;
+                RaisePropertyChanged("name");
+            }
+        }
+
+        private String newItemType;
+
+        public String NewItemType
+        {
+            get { return newItemType; }
+            set
+            {
+                newItemType = value;
+                RaisePropertyChanged("type");
+            }
+        }
+
+        private DateTime newItemExpirationDate;
+
+        public DateTime NewItemExpirationDate
+        {
+            get { return newItemExpirationDate; }
+            set
+            {
+                newItemExpirationDate = value;
+                RaisePropertyChanged("proprio");
+            }
+        }
+
+        private int newItemQuantity;
+
+        public int NewItemQuantity
+        {
+            get { return newItemQuantity; }
+            set
+            {
+                newItemQuantity = value;
+                RaisePropertyChanged("proprio");
+            }
+        }
+
+        private int newItemIdContainer;
+
+        public int NewItemIdContainer
+        {
+            get { return newItemIdContainer; }
+            set
+            {
+                newItemIdContainer = value;
+                RaisePropertyChanged("proprio");
+            }
+        }
+
         public ContainerViewModel (INavigationService navigationService = null)
         {
             _navigationService = navigationService;
+        }
+
+        public ICommand AddContainer
+        {
+
+        }
+
+        public ICommand ReadItems
+        {
+
         }
 
     }

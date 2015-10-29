@@ -5,7 +5,7 @@ using Newtonsoft.Json;
 
 namespace FrigoApp.Model
 {
-    class Container
+    public class Container
     {
         public String id { get; set; }
 
