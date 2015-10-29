@@ -10,6 +10,7 @@ using System.Windows.Input;
 using Windows.UI.Popups;
 using FrigoApp.Model;
 using Microsoft.WindowsAzure.MobileServices;
+using System.Linq;
 
 namespace FrigoApp.ViewModel
 {
@@ -29,13 +30,13 @@ namespace FrigoApp.ViewModel
             set
             {
                 container = value;
-                RaisePropertyChanged("name");
+                FindItemByIdContainer();
             }
         }
 
-        public ObservableCollection<Type> Types { get; private set; }
+        public ObservableCollection<TypeItem> Types { get; private set; }
 
-        private IMobileServiceTable<Type> typesTable = App.FappClient.GetTable<Type>();
+        private IMobileServiceTable<TypeItem> typesTable = App.FappClient.GetTable<TypeItem>();
 
         private String newItemName;
 
@@ -49,9 +50,9 @@ namespace FrigoApp.ViewModel
             }
         }
 
-        private String newItemType;
+        private TypeItem newItemType;
 
-        public String NewItemType
+        public TypeItem NewItemType
         {
             get { return newItemType; }
             set
@@ -73,7 +74,7 @@ namespace FrigoApp.ViewModel
             }
         }
 
-        private int newItemQuantity;
+        private int newItemQuantity = 1;
 
         public int NewItemQuantity
         {
@@ -85,25 +86,87 @@ namespace FrigoApp.ViewModel
             }
         }
 
-        private int newItemIdContainer;
-
         public ContainerViewModel(INavigationService navigationService = null)
         {
             _navigationService = navigationService;
+            Items = new ObservableCollection<Item>();
+            Types = new ObservableCollection<TypeItem>();
+            LoadType();
         }
 
-    //    private async void findItemByIdContainer()
-    //    {
-    //        IMobileServiceTableQuery<Item> query = itemsTable.Where(Item => Item.Idcontainer == Container.id);
-    //        Items.Clear();
+        private async void FindItemByIdContainer()
+        {
+            IMobileServiceTableQuery<Item> query = itemsTable.Where(Item => Item.Idcontainer == Container.id);
+            Items.Clear();
 
-    //        IEnumerable<Item> items = await query.ToListAsync();
+            IEnumerable<Item> list = await query.ToListAsync();
 
-    //        items = items.OrderBy(c => c.Name);
+            list = list.OrderBy(i => i.Name);
 
-    //        foreach (var item in items)
-    //            Containers.Add(item);
-    //    }
+            foreach (var item in list)
+                Items.Add(item);
+        }
 
-    //}
+        private async void LoadType()
+        {
+
+            IMobileServiceTableQuery<TypeItem> query = typesTable.OrderBy(type => type.Name);
+            Items.Clear();
+
+            IEnumerable<TypeItem> list = await query.ToListAsync();
+
+            foreach (var item in list)
+            {
+                Types.Add(item);
+            }
+                
+        }
+
+        public ICommand AddNewItem
+        {
+            get
+            {
+                return new RelayCommand(
+                    async () =>
+                    {
+                        if (CheckAllFieldIsFilled())
+                        {
+
+                            Item newItem = new Item(NewItemName, newItemType.id, newItemExpirationDate, newItemQuantity, Container.id);
+                            await itemsTable.InsertAsync(newItem);
+
+                            RefreshView();
+
+                            var loader = new Windows.ApplicationModel.Resources.ResourceLoader();
+                            var str = loader.GetString("addItemSuccess");
+                            ShowMessageBox(str);
+                        }
+                        else
+                        {
+                            var loader = new Windows.ApplicationModel.Resources.ResourceLoader();
+                            var str = loader.GetString("errorEmptyItem");
+                            ShowMessageBox(str);
+                        }
+                    });
+            }
+        }
+
+        private bool CheckAllFieldIsFilled()
+        {
+            return !String.IsNullOrEmpty(NewItemName);
+        }
+
+        private void RefreshView()
+        {
+            FindItemByIdContainer();
+            NewItemName = String.Empty;
+            NewItemQuantity = 1;
+        }
+
+        private async void ShowMessageBox(string message)
+        {
+            var dialog = new MessageDialog(message.ToString());
+            await dialog.ShowAsync();
+        }
+    }
 }

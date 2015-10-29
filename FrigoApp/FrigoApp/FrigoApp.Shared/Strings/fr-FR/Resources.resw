@@ -198,4 +198,10 @@
   <data name="tNewItemQuantity.Text" xml:space="preserve">
     <value>Quantité</value>
   </data>
+  <data name="addItemSuccess" xml:space="preserve">
+    <value>Item ajouté</value>
+  </data>
+  <data name="errorEmptyItem" xml:space="preserve">
+    <value>Chaque champs doit être rempli</value>
+  </data>
 </root>

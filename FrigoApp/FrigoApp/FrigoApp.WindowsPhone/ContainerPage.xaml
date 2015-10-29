@@ -32,7 +32,7 @@
             <ListView  HorizontalAlignment="Left" x:Name="listItems" ItemTemplate="{StaticResource ItemTemplate}" ItemsSource="{Binding Items}" SelectedItem="{Binding SelectedItems, Mode=TwoWay}"/>
             <TextBlock x:Uid="tNewItem" TextWrapping="Wrap" HorizontalAlignment="Center" FontSize="30" />
             <TextBox x:Uid="tbNewItemName" x:Name="tbNewItemName" HorizontalAlignment="Center" Width="250px" TextWrapping="Wrap" Text="{Binding NewItemName, Mode=TwoWay}"/>
-            <ComboBox x:Uid="cbNewItemType" x:Name="cbNewItemType" Width="250px"/>
+            <ComboBox x:Uid="cbNewItemType" x:Name="cbNewItemType" Width="250px" ItemsSource="{Binding Types}" DisplayMemberPath="Name" SelectedItem="{Binding NewItemType}" />
             <TextBlock x:Uid="tNewItemQuantity" TextWrapping="Wrap" HorizontalAlignment="Center" FontSize="28"/>
             <TextBox x:Uid="tbNexItemQuantity" x:Name="tbItemQuantity" TextWrapping="Wrap" HorizontalAlignment="Center" Width="250px" Text="{Binding NewItemQuantity, Mode=TwoWay}" />
             <TextBlock x:Uid="tNewItemExpirationDate" TextWrapping="Wrap" HorizontalAlignment="Center" FontSize="28" />
