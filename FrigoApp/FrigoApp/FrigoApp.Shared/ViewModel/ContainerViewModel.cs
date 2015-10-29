@@ -13,7 +13,7 @@ using Microsoft.WindowsAzure.MobileServices;
 
 namespace FrigoApp.ViewModel
 {
-    class ContainerViewModel : ViewModelBase
+    public class ContainerViewModel : ViewModelBase
     {
         private INavigationService _navigationService;
 

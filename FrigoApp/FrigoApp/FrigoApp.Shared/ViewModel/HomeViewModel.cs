@@ -9,6 +9,7 @@ using Windows.UI.Popups;
 using Microsoft.WindowsAzure.MobileServices;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
+using System.Linq;
 
 namespace FrigoApp.ViewModel
 {
@@ -40,7 +41,7 @@ namespace FrigoApp.ViewModel
             set
             {
                 selectedContainer = value;
-                //allers sur la page containers
+                GoToContainer.Execute(selectedContainer);
             }
         }
 
@@ -77,10 +78,11 @@ namespace FrigoApp.ViewModel
         private async void findContainerOfUser()
         {
             IMobileServiceTableQuery<Container> query = containerTable.Where(Container => Container.Proprio == IdUser);
-
             Containers.Clear();
 
-            var items = await query.ToListAsync();
+            IEnumerable<Container> items = await query.ToListAsync();
+
+            items = items.OrderBy(c => c.Name);
 
             foreach (var item in items)
                 Containers.Add(item);
@@ -90,8 +92,8 @@ namespace FrigoApp.ViewModel
         {
             get
             {
-                return new RelayCommand<Container>(
-                    async (selectedContainer) =>
+                return new RelayCommand(
+                    async () =>
                     {
                         if (CheckAllFieldIsFilled())
                         {
@@ -114,6 +116,18 @@ namespace FrigoApp.ViewModel
                             var str = loader.GetString("errorEmptyNameContainer");
                             ShowMessageBox(str);
                         }
+                    });
+            }
+        }
+
+        public ICommand GoToContainer
+        {
+            get
+            {
+                return new RelayCommand<Container>(
+                    (SelectedContainer) =>
+                    {
+                        _navigationService.NavigateTo("ContainerPage", SelectedContainer);
                     });
             }
         }
