@@ -37,11 +37,17 @@ namespace FrigoApp.ViewModel
             navigation.Configure("MainPage", typeof(MainPage));
             navigation.Configure("HomePage", typeof(HomePage));
             navigation.Configure("SignUpPage", typeof(SignUpPage));
+            navigation.Configure("ContainerPage", typeof(ContainerPage));
+            navigation.Configure("UpdatePage", typeof(UpdatePage));
+
 
             SimpleIoc.Default.Register<INavigationService>(() => navigation);
             SimpleIoc.Default.Register<MainViewModel>();
             SimpleIoc.Default.Register<HomeViewModel>();
             SimpleIoc.Default.Register<SignUpViewModel>();
+            SimpleIoc.Default.Register<ContainerViewModel>();
+            SimpleIoc.Default.Register<UpdateViewModel>();
+
         }
 
         public MainViewModel Main
@@ -65,6 +71,22 @@ namespace FrigoApp.ViewModel
             get
             {
                 return ServiceLocator.Current.GetInstance<SignUpViewModel>();
+            }
+        }
+
+        public ContainerViewModel Container
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<ContainerViewModel>();
+            }
+        }
+
+        public UpdateViewModel Update
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<UpdateViewModel>();
             }
         }
 

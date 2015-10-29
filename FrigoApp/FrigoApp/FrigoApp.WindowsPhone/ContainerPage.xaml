@@ -6,9 +6,40 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    DataContext="{Binding Container, Source={StaticResource Locator}}">
 
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
 
+        <StackPanel Grid.Row="0">
+            <TextBlock x:Uid="appName" TextWrapping="Wrap" HorizontalAlignment="Center" Text="" FontSize="48"/>
+        </StackPanel>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="80*"/>
+                <ColumnDefinition Width="20*"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock TextWrapping="Wrap" HorizontalAlignment="Left" Text="{Binding ContainerName}" FontSize="28" Grid.Column="0"/>
+            <Button x:Uid="bActivateGarbage" x:Name="bActivateGarbage" HorizontalAlignment="Center" Command="{Binding ActiviteGarbage}" Grid.Column="1" Margin="0 0 10 0" VerticalAlignment="Bottom"/>
+        </Grid>
+        <StackPanel Grid.Row="2">
+            <ListView  HorizontalAlignment="Left" x:Name="listItems" ItemTemplate="{StaticResource ItemTemplate}" ItemsSource="{Binding Items}" SelectedItem="{Binding SelectedItems, Mode=TwoWay}"/>
+            <TextBlock x:Uid="tNewItem" TextWrapping="Wrap" HorizontalAlignment="Center" FontSize="30" />
+            <TextBox x:Uid="tbNewItemName" x:Name="tbNewItemName" HorizontalAlignment="Center" Width="250px" TextWrapping="Wrap" Text="{Binding NewItemName, Mode=TwoWay}"/>
+            <ComboBox x:Uid="cbNewItemType" x:Name="cbNewItemType" Width="250px"/>
+            <TextBlock x:Uid="tNewItemQuantity" TextWrapping="Wrap" HorizontalAlignment="Center" FontSize="28"/>
+            <TextBox x:Uid="tbNexItemQuantity" x:Name="tbItemQuantity" TextWrapping="Wrap" HorizontalAlignment="Center" Width="250px" Text="{Binding NewItemQuantity, Mode=TwoWay}" />
+            <TextBlock x:Uid="tNewItemExpirationDate" TextWrapping="Wrap" HorizontalAlignment="Center" FontSize="28" />
+            <DatePicker x:Name="dpItemExpirationDate" HorizontalAlignment="Center" Width="250px"/>
+            <Button x:Uid="bAddNewItem" HorizontalAlignment="Center" Command="{Binding AddNewItem}"/>
+            <Button x:Uid="bDeleteContainer" x:Name="bDeleteContainer" HorizontalAlignment="Center" Command="{Binding DeleteContainer}"/>
+
+        </StackPanel>
     </Grid>
 </Page>

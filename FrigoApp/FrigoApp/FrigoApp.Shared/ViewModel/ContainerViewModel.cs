@@ -13,53 +13,29 @@ using Microsoft.WindowsAzure.MobileServices;
 
 namespace FrigoApp.ViewModel
 {
-    class ContainerViewModel : ViewModelBase
+    public class ContainerViewModel : ViewModelBase
     {
         private INavigationService _navigationService;
 
-        public ObservableCollection<Container> containers { get; private set; }
+        public ObservableCollection<Item> Items { get; private set; }
 
-        private IMobileServiceTable<Container> containerTable = App.FappClient.GetTable<Container>();
+        private IMobileServiceTable<Item> itemsTable = App.FappClient.GetTable<Item>();
 
-        private String nameContainer;
+        private Container container;
 
-        public String NameContainer
+        public Container Container
         {
-            get { return nameContainer; }
+            get { return container; }
             set
             {
-                nameContainer = value;
+                container = value;
                 RaisePropertyChanged("name");
             }
         }
 
-        private Boolean isFreezerContainer;
+        public ObservableCollection<Type> Types { get; private set; }
 
-        public Boolean IsFreezerContainer
-        {
-            get { return isFreezerContainer; }
-            set
-            {
-                isFreezerContainer = value;
-                RaisePropertyChanged("type");
-            }
-        }
-
-        private String proprioContainer;
-
-        public String ProprioContainer
-        {
-            get { return proprioContainer; }
-            set
-            {
-                proprioContainer = value;
-                RaisePropertyChanged("proprio");
-            }
-        }
-
-        public ObservableCollection<Container> items { get; private set; }
-
-        private IMobileServiceTable<Item> itemTable = App.FappClient.GetTable<Item>();
+        private IMobileServiceTable<Type> typesTable = App.FappClient.GetTable<Type>();
 
         private String newItemName;
 
@@ -69,7 +45,7 @@ namespace FrigoApp.ViewModel
             set
             {
                 newItemName = value;
-                RaisePropertyChanged("name");
+                RaisePropertyChanged("NewItemName");
             }
         }
 
@@ -81,7 +57,7 @@ namespace FrigoApp.ViewModel
             set
             {
                 newItemType = value;
-                RaisePropertyChanged("type");
+                RaisePropertyChanged("NewItemType");
             }
         }
 
@@ -93,7 +69,7 @@ namespace FrigoApp.ViewModel
             set
             {
                 newItemExpirationDate = value;
-                RaisePropertyChanged("proprio");
+                RaisePropertyChanged("NewItemExpirationDate");
             }
         }
 
@@ -105,26 +81,29 @@ namespace FrigoApp.ViewModel
             set
             {
                 newItemQuantity = value;
-                RaisePropertyChanged("proprio");
+                RaisePropertyChanged("NewItemQuantity");
             }
         }
 
         private int newItemIdContainer;
 
-        public int NewItemIdContainer
-        {
-            get { return newItemIdContainer; }
-            set
-            {
-                newItemIdContainer = value;
-                RaisePropertyChanged("proprio");
-            }
-        }
-
         public ContainerViewModel(INavigationService navigationService = null)
         {
             _navigationService = navigationService;
         }
+
+    //    private async void findItemByIdContainer()
+    //    {
+    //        IMobileServiceTableQuery<Item> query = itemsTable.Where(Item => Item.Idcontainer == Container.id);
+    //        Items.Clear();
+
+    //        IEnumerable<Item> items = await query.ToListAsync();
+
+    //        items = items.OrderBy(c => c.Name);
+
+    //        foreach (var item in items)
+    //            Containers.Add(item);
+    //    }
 
     }
 }
