@@ -13,7 +13,7 @@ using Microsoft.WindowsAzure.MobileServices;
 
 namespace FrigoApp.ViewModel
 {
-    class ContainerViewModel :ViewModelBase
+    class ContainerViewModel : ViewModelBase
     {
         private INavigationService _navigationService;
 
@@ -21,42 +21,107 @@ namespace FrigoApp.ViewModel
 
         private IMobileServiceTable<Container> containerTable = App.FappClient.GetTable<Container>();
 
-        private String name;
+        private String nameContainer;
 
-        public String Name
+        public String NameContainer
         {
-            get { return name;  }
-            set {
-                name = value;
+            get { return nameContainer; }
+            set
+            {
+                nameContainer = value;
                 RaisePropertyChanged("name");
             }
         }
 
-        private String type;
+        private Boolean isFreezerContainer;
 
-        public String Type
+        public Boolean IsFreezerContainer
         {
-            get { return type; }
+            get { return isFreezerContainer; }
             set
             {
-                type = value;
+                isFreezerContainer = value;
                 RaisePropertyChanged("type");
             }
         }
 
-        private String proprio;
+        private String proprioContainer;
 
-        public String Proprio
+        public String ProprioContainer
         {
-            get { return proprio; }
+            get { return proprioContainer; }
             set
             {
-                proprio = value;
+                proprioContainer = value;
                 RaisePropertyChanged("proprio");
             }
         }
 
-        public ContainerViewModel (INavigationService navigationService = null)
+        public ObservableCollection<Container> items { get; private set; }
+
+        private IMobileServiceTable<Item> itemTable = App.FappClient.GetTable<Item>();
+
+        private String newItemName;
+
+        public String NewItemName
+        {
+            get { return newItemName; }
+            set
+            {
+                newItemName = value;
+                RaisePropertyChanged("name");
+            }
+        }
+
+        private String newItemType;
+
+        public String NewItemType
+        {
+            get { return newItemType; }
+            set
+            {
+                newItemType = value;
+                RaisePropertyChanged("type");
+            }
+        }
+
+        private DateTime newItemExpirationDate;
+
+        public DateTime NewItemExpirationDate
+        {
+            get { return newItemExpirationDate; }
+            set
+            {
+                newItemExpirationDate = value;
+                RaisePropertyChanged("proprio");
+            }
+        }
+
+        private int newItemQuantity;
+
+        public int NewItemQuantity
+        {
+            get { return newItemQuantity; }
+            set
+            {
+                newItemQuantity = value;
+                RaisePropertyChanged("proprio");
+            }
+        }
+
+        private int newItemIdContainer;
+
+        public int NewItemIdContainer
+        {
+            get { return newItemIdContainer; }
+            set
+            {
+                newItemIdContainer = value;
+                RaisePropertyChanged("proprio");
+            }
+        }
+
+        public ContainerViewModel(INavigationService navigationService = null)
         {
             _navigationService = navigationService;
         }
