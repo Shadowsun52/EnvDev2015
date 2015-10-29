@@ -180,4 +180,7 @@
   <data name="errorEmptyNameContainer" xml:space="preserve">
     <value>Container's name need filled</value>
   </data>
+  <data name="connexPerdue" xml:space="preserve">
+    <value>Connection lost, reconnect yourself</value>
+  </data>
 </root>

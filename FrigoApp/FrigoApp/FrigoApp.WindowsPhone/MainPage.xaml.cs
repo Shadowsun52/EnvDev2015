@@ -66,8 +66,8 @@ namespace FrigoApp
                 var taskBuilder = new BackgroundTaskBuilder();
                 taskBuilder.Name = taskName;
                 taskBuilder.TaskEntryPoint = typeof(BackgroundAgent.Notifications).FullName;
-                //taskBuilder.SetTrigger(new SystemTrigger(SystemTriggerType.InternetAvailable, false));
-                taskBuilder.SetTrigger(new MaintenanceTrigger(15, false));
+                taskBuilder.SetTrigger(new SystemTrigger(SystemTriggerType.InternetAvailable, false));
+                //taskBuilder.SetTrigger(new MaintenanceTrigger(15, false));
 
 
                 var registration = taskBuilder.Register();
