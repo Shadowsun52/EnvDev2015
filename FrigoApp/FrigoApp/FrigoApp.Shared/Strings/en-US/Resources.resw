@@ -180,4 +180,19 @@
   <data name="errorEmptyNameContainer" xml:space="preserve">
     <value>Container's name need filled</value>
   </data>
+  <data name="bAddNewItem" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="bDeleteContainer" xml:space="preserve">
+    <value>Delete container</value>
+  </data>
+  <data name="tNewItem" xml:space="preserve">
+    <value>Add item</value>
+  </data>
+  <data name="tNewItemExpirationDate" xml:space="preserve">
+    <value>Expiration date</value>
+  </data>
+  <data name="tNewItemQuantity" xml:space="preserve">
+    <value>Quantity</value>
+  </data>
 </root>
