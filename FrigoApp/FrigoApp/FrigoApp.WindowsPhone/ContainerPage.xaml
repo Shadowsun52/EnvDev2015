@@ -26,7 +26,7 @@
             </Grid.ColumnDefinitions>
 
             <TextBlock TextWrapping="Wrap" HorizontalAlignment="Left" Text="{Binding ContainerName}" FontSize="28" Grid.Column="0"/>
-            <Button x:Uid="bActivateGarbage" HorizontalAlignment="Center" Command="{Binding ActiviteGarbage}" Grid.ColumnSpan="2" Margin="306,0,-15,0" VerticalAlignment="Bottom"/>
+            <Button x:Uid="bActivateGarbage" x:Name="bActivateGarbage" HorizontalAlignment="Center" Command="{Binding ActiviteGarbage}" Grid.Column="1" Margin="0 0 10 0" VerticalAlignment="Bottom"/>
         </Grid>
         <StackPanel Grid.Row="2">
             <ListView  HorizontalAlignment="Left" x:Name="listItems" ItemTemplate="{StaticResource ItemTemplate}" ItemsSource="{Binding Items}" SelectedItem="{Binding SelectedItems, Mode=TwoWay}"/>

@@ -22,14 +22,14 @@ namespace FrigoApp.Model
         public int Quantity { get; set; }
 
         [JsonProperty(PropertyName = "idcontainer")]
-        public int Idcontainer { get; set; }
+        public String Idcontainer { get; set; }
 
         public Item()
         {
 
         }
 
-        public Item(String name, String type, DateTime expirationdate, int quantity, int idContainer)
+        public Item(String name, String type, DateTime expirationdate, int quantity, String idContainer)
         {
             Name = name;
             Type = type;

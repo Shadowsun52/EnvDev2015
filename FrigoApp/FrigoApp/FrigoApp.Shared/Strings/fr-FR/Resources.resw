@@ -180,19 +180,22 @@
   <data name="errorEmptyNameContainer" xml:space="preserve">
     <value>Le nom du container doit être rempli</value>
   </data>
-  <data name="bAddNewItem" xml:space="preserve">
+  <data name="bActivateGarbage.Content" xml:space="preserve">
+    <value>Bin</value>
+  </data>
+  <data name="bAddNewItem.Content" xml:space="preserve">
     <value>Ajouter</value>
   </data>
-  <data name="bDeleteContainer" xml:space="preserve">
+  <data name="bDeleteContainer.Content" xml:space="preserve">
     <value>Supprimer le conteneur</value>
   </data>
-  <data name="tNewItem" xml:space="preserve">
+  <data name="tNewItem.Text" xml:space="preserve">
     <value>Ajouter un nouveau élément</value>
   </data>
-  <data name="tNewItemExpirationDate" xml:space="preserve">
+  <data name="tNewItemExpirationDate.Text" xml:space="preserve">
     <value>Date d'expiration</value>
   </data>
-  <data name="tNewItemQuantity" xml:space="preserve">
+  <data name="tNewItemQuantity.Text" xml:space="preserve">
     <value>Quantité</value>
   </data>
 </root>
