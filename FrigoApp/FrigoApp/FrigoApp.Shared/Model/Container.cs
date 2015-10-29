@@ -12,22 +12,22 @@ namespace FrigoApp.Model
         [JsonProperty(PropertyName = "name")]
         public String Name { get; set; }
 
-        [JsonProperty(PropertyName = "type")]
-        public String Type { get; set; }
-
         [JsonProperty(PropertyName = "proprio")]
         public String Proprio { get; set; }
+
+        [JsonProperty(PropertyName = "isFreezer")]
+        public Boolean IsFreezer { get; set; }
 
         public Container()
         {
 
         }
 
-        public Container(String name, String type, String proprio)
+        public Container(String name, String proprio, Boolean isFreezer)
         {
             Name = name;
-            Type = type;
             Proprio = proprio;
+            IsFreezer = isFreezer;
         }
 
         public override String ToString()

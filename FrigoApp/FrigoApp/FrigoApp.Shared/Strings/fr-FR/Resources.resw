@@ -171,4 +171,13 @@
   <data name="validConnexion" xml:space="preserve">
     <value>Connexion réussie</value>
   </data>
+  <data name="addFreezerSuccess" xml:space="preserve">
+    <value>Ajout congélatereur réussi</value>
+  </data>
+  <data name="addFridgeSuccess" xml:space="preserve">
+    <value>Ajout frigo réussi</value>
+  </data>
+  <data name="errorEmptyNameContainer" xml:space="preserve">
+    <value>Le nom du container doit être rempli</value>
+  </data>
 </root>

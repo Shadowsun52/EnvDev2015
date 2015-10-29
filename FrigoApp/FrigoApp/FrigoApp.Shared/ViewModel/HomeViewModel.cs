@@ -44,16 +44,29 @@ namespace FrigoApp.ViewModel
             }
         }
 
-        private Container newContainer;
-        
-        public Container NewContainer
+        private string newContainerName;
+
+        public String NewContainerName
         {
-            get { return NewContainer; }
+            get { return newContainerName; }
             set
             {
-                newContainer = value;
+                newContainerName = value;
+                RaisePropertyChanged("NewContainerName");
             }
-        } 
+        }
+
+        private bool newContainerIsFreezer;
+
+        public Boolean NewContainerIsFreezer
+        {
+            get { return newContainerIsFreezer; }
+            set
+            {
+                newContainerIsFreezer = value;
+                RaisePropertyChanged("NewContainerIsFreezer");
+            }
+        }
 
         public HomeViewModel(INavigationService navigationService = null)
         {
@@ -65,23 +78,57 @@ namespace FrigoApp.ViewModel
         {
             IMobileServiceTableQuery<Container> query = containerTable.Where(Container => Container.Proprio == IdUser);
 
+            Containers.Clear();
+
             var items = await query.ToListAsync();
 
             foreach (var item in items)
                 Containers.Add(item);
         }
-   
-        //public ICommand AddContainer
-        //{
-        //    get
-        //    {
-        //        return RelayCommand<Container>(
-        //            (newContainer) =>
-        //            {
 
-        //            });
-        //    }
-        //}
+        public ICommand AddContainer
+        {
+            get
+            {
+                return new RelayCommand<Container>(
+                    async (selectedContainer) =>
+                    {
+                        if (CheckAllFieldIsFilled())
+                        {
+                            Container newContainer = new Container(newContainerName, idUser, newContainerIsFreezer);
+                            await containerTable.InsertAsync(newContainer);
+
+                            RefreshView();
+
+                            var loader = new Windows.ApplicationModel.Resources.ResourceLoader();
+                            var str = "";
+                            if (newContainerIsFreezer)
+                                str = loader.GetString("addFreezerSuccess");
+                            else
+                                str = loader.GetString("addFridgeSuccess");
+                            ShowMessageBox(str);
+                        }
+                        else
+                        {
+                            var loader = new Windows.ApplicationModel.Resources.ResourceLoader();
+                            var str = loader.GetString("errorEmptyNameContainer");
+                            ShowMessageBox(str);
+                        }
+                    });
+            }
+        }
+
+        private bool CheckAllFieldIsFilled()
+        {
+            return !String.IsNullOrEmpty(NewContainerName);
+        }
+
+        private void RefreshView()
+        {
+            findContainerOfUser();
+            NewContainerName = String.Empty;
+            NewContainerIsFreezer = false;
+        }
 
         private async void ShowMessageBox(string message)
         {

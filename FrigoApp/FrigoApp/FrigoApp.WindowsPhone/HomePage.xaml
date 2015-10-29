@@ -5,6 +5,7 @@
     xmlns:local="using:FrigoApp"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:pd="using:FrigoApp.Converters"
     mc:Ignorable="d"
     DataContext="{Binding Home, Source={StaticResource Locator}}"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
@@ -22,20 +23,14 @@
         <Grid Grid.Row="1">
             <ScrollViewer VerticalScrollBarVisibility="Auto">
                 <StackPanel>
-                    <ListView HorizontalAlignment="Left" x:Name="listContainers" ItemsSource="{Binding Containers}">
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <StackPanel>
-                                    <TextBlock HorizontalAlignment="Left" Text="{Binding Name}" FontSize="34"/>
-                                </StackPanel>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
+                    <ListView HorizontalAlignment="Left" x:Name="listContainers" ItemTemplate="{StaticResource ContainerTemplate}" ItemsSource="{Binding Containers}" SelectedItem="{Binding SelectedContainer, Mode=TwoWay}">
+
                     </ListView>
                 
                     <TextBlock x:Uid="tNewContainerName" HorizontalAlignment="Center" TextWrapping="Wrap" FontSize="24"/>
-                    <TextBox x:Uid="tbNewContainerName" x:Name="tbNewContainerName" HorizontalAlignment="Center" Width="250px" TextWrapping="Wrap" />
-                    <CheckBox x:Uid="cbNewContainerFreezer" x:Name="cbNewContainerFreezer" FontSize="24" HorizontalAlignment="Center"/>
-                    <Button x:Uid="bAddContainer" HorizontalAlignment="Center" />
+                    <TextBox x:Uid="tbNewContainerName" x:Name="tbNewContainerName" HorizontalAlignment="Center" Width="250px" TextWrapping="Wrap" Text="{Binding NewContainerName, Mode=TwoWay}"/>
+                    <CheckBox x:Uid="cbNewContainerFreezer" x:Name="cbNewContainerFreezer" FontSize="24" HorizontalAlignment="Center" IsChecked="{Binding NewContainerIsFreezer, Mode=TwoWay}"/>
+                    <Button x:Uid="bAddContainer" HorizontalAlignment="Center" Command="{Binding AddContainer}"/>
                 </StackPanel>
             </ScrollViewer>
         </Grid>

@@ -171,4 +171,13 @@
   <data name="validConnexion" xml:space="preserve">
     <value>Successful connection</value>
   </data>
+  <data name="addFreezerSuccess" xml:space="preserve">
+    <value>Adding freezer success</value>
+  </data>
+  <data name="addFridgeSuccess" xml:space="preserve">
+    <value>Adding fridge success</value>
+  </data>
+  <data name="errorEmptyNameContainer" xml:space="preserve">
+    <value>Container's name need filled</value>
+  </data>
 </root>
