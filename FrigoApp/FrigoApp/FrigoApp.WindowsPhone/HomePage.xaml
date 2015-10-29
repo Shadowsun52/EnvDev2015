@@ -22,8 +22,14 @@
         <Grid Grid.Row="1">
             <ScrollViewer VerticalScrollBarVisibility="Auto">
                 <StackPanel>
-                    <ListView HorizontalAlignment="Left">
-                        
+                    <ListView HorizontalAlignment="Left" x:Name="listContainers" ItemsSource="{Binding Containers}">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <TextBlock HorizontalAlignment="Left" Text="{Binding Name}" FontSize="34"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
                     </ListView>
                 
                     <TextBlock x:Uid="tNewContainerName" HorizontalAlignment="Center" TextWrapping="Wrap" FontSize="24"/>

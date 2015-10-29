@@ -74,11 +74,7 @@ namespace FrigoApp.ViewModel
                     {
                         IMobileServiceTableQuery<User> query = userTable.Where(user => user.Login == login);
 
-                        //userFound.Clear();
-
                         var userFound = await query.ToListAsync();
-                        //foreach (var item in items)
-                        //    userFound.Add(item);
 
                         if(userFound.Count != 0)
                         {
@@ -87,7 +83,8 @@ namespace FrigoApp.ViewModel
                                 var loader = new Windows.ApplicationModel.Resources.ResourceLoader();
                                 var str = loader.GetString("validConnexion");
                                 ShowMessageBox(str);
-                                _navigationService.NavigateTo("HomePage");
+                                string idUser = userFound[0].id;
+                                _navigationService.NavigateTo("HomePage", idUser);
                             }
                             else
                             {
