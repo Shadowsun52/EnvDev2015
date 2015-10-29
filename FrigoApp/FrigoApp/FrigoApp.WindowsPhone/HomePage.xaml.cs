@@ -43,6 +43,7 @@ namespace FrigoApp
                 ((HomeViewModel)DataContext).IdUser = e.Parameter.ToString();
             }
 
+
         }
 
         private void HardwareButton_BackPressed(object sender, BackPressedEventArgs e)

@@ -192,6 +192,12 @@
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\BackgroundAgent\BackgroundAgent.csproj">
+      <Project>{a5f42a3e-6f6c-4997-ab5e-1ad529c9c33f}</Project>
+      <Name>BackgroundAgent</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '12.0' ">
     <VisualStudioVersion>12.0</VisualStudioVersion>
   </PropertyGroup>

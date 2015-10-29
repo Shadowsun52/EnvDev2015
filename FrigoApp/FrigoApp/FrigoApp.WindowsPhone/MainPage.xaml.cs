@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using Windows.ApplicationModel.Background;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -43,6 +44,35 @@ namespace FrigoApp
             // Événement Windows.Phone.UI.Input.HardwareButtons.BackPressed.
             // Si vous utilisez le NavigationHelper fourni par certains modèles,
             // cet événement est géré automatiquement.
+
+            this.SetBackgroundAgentOn();
+        }
+
+        public void SetBackgroundAgentOn()
+        {
+            var taskRegistered = false;
+            var taskName = "BackgroundTasks";
+
+            foreach (var task in BackgroundTaskRegistration.AllTasks)
+            {
+                if (task.Value.Name == taskName)
+                {
+                    taskRegistered = true;
+                    break;
+                }
+            }
+            if (taskRegistered == false)
+            {
+                var taskBuilder = new BackgroundTaskBuilder();
+                taskBuilder.Name = taskName;
+                taskBuilder.TaskEntryPoint = typeof(BackgroundAgent.Notifications).FullName;
+                //taskBuilder.SetTrigger(new SystemTrigger(SystemTriggerType.InternetAvailable, false));
+                taskBuilder.SetTrigger(new MaintenanceTrigger(15, false));
+
+
+                var registration = taskBuilder.Register();
+            }
+            
         }
     }
 }
